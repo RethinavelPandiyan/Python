@@ -12,6 +12,8 @@ class PasswordGenerator:
 		return(str(randint(0,9)))
 	def symbol(self):
 		return(choice(string.punctuation))
+	def error(self):
+		return "You enter other than [Y&N]"
 	def start(self):
 		print('#'+'-'*20+"Password Generator"+'-'*20+'#')
 		try:
@@ -24,14 +26,26 @@ class PasswordGenerator:
 			print(f"Error: {error}")
 			exit()
 		print("\nYes type [Y/y] or No type [N/n].")
-		capital_alpha=input("\nCapital alphapet? ").upper()
-		if capital_alpha=='Y':self.fun_lst.append(self.capital)
-		small_alpha=input("\nSmall alphapet? ").upper()
-		if small_alpha=='Y':self.fun_lst.append(self.small)
-		number=input("\nNumbers? ").upper()
-		if number=='Y':self.fun_lst.append(self.number_fun)
-		special_char=input("\nSpecial charater? ").upper()
-		if special_char=='Y':self.fun_lst.append(self.symbol)
+		try:
+			capital_alpha=input("\nCapital alphapet? ").upper()
+			if capital_alpha!='Y' and capital_alpha!='N':
+				raise ValueError(self.error())
+			if capital_alpha=='Y':self.fun_lst.append(self.capital)
+			small_alpha=input("\nSmall alphapet? ").upper()
+			if small_alpha!='Y' and small_alpha!='N':
+				raise ValueError(self.error())
+			if small_alpha=='Y':self.fun_lst.append(self.small)
+			number=input("\nNumbers? ").upper()
+			if number!='Y' and number!='N':
+				raise ValueError(self.error())
+			if number=='Y':self.fun_lst.append(self.number_fun)
+			special_char=input("\nSpecial charater? ").upper()
+			if special_char!='Y' and special_char!='N':
+				raise ValueError(self.error())
+			if special_char=='Y':self.fun_lst.append(self.symbol)
+		except ValueError as error:
+			print(f"Error: {error}")
+			exit()
 		for i in range(pass_length):
 				shuffle(self.fun_lst)
 				for fun in self.fun_lst:
@@ -42,4 +56,3 @@ class PasswordGenerator:
 if __name__=="__main__":
 	pg=PasswordGenerator()
 	pg.start()
-	

@@ -1,4 +1,4 @@
-from random import randint                        import sys                                        def stage(level):                                     print(f"Great!You have select the {level} difficulty level.\nLet's start the game!\n")          print("Welcome to The Number Guessing Game!\nI'm t
+from random import randint                        import sys                                        def stage(level):                                     print(f"Great! You have select the {level} difficulty level.\nLet's start the game!\n")          print("Welcome to The Number Guessing Game!\nI'm t
 hinking of a number between 1 and 100.\nYou have 5
  chances to guess the correct number.\n\nPlease se
 lect the difficulty level:\n1.Easy (10 chances)\n2
